@@ -1,7 +1,6 @@
 import classnames from 'classnames';
 import { observer } from 'mobx-react';
 import { FC } from 'react';
-import { WhiteboardContainer } from '~containers/board';
 import { DialogContainer } from '~containers/dialog';
 import { LoadingContainer } from '~containers/loading';
 import { NavigationBarContainer } from '~containers/nav';
@@ -14,7 +13,6 @@ import { ExtensionAppContainer } from '~containers/extension-app-container';
 
 import { ToastContainer } from '~containers/toast';
 import { CollectorContainer } from '~containers/board';
-import { BigWidgetWindowContainer } from '../../containers/big-widget-window';
 import { useStore } from '@/infra/hooks/use-edu-stores';
 import { ScenesController } from '../../containers/scenes-controller';
 
@@ -29,11 +27,8 @@ const Content: FC<Props> = ({ children }) => {
 export const OneToOneScenario = observer(() => {
   const layoutCls = classnames('edu-room');
   const {
-    classroomStore,
     streamWindowUIStore: { containedStreamWindowCoverOpacity },
   } = useStore();
-  const { boardStore } = classroomStore;
-  const { whiteboardWidgetActive } = boardStore;
   return (
     <Room>
       <FixedAspectRatioRootBox trackMargin={{ top: 27 }}>
@@ -41,11 +36,7 @@ export const OneToOneScenario = observer(() => {
           <NavigationBarContainer />
           <Layout className="horizontal">
             <Content>
-              <BigWidgetWindowContainer>
-                {whiteboardWidgetActive && <WhiteboardContainer></WhiteboardContainer>}
-              </BigWidgetWindowContainer>
               <ScenesController />
-
               <Aside
                 className="aisde-fixed fcr-room-1v1"
                 style={{ opacity: containedStreamWindowCoverOpacity }}>

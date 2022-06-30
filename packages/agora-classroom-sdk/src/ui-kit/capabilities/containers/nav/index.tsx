@@ -2,8 +2,6 @@ import { EduNavAction, EduNavRecordActionPayload } from '@/infra/stores/common/n
 import { observer } from 'mobx-react';
 import { useStore } from '~hooks/use-edu-stores';
 import { Header, Inline, Popover, SvgImg, Tooltip, Button, transI18n, SvgaPlayer } from '~ui-kit';
-import { RecordStatus } from 'agora-edu-core';
-import RecordLoading from './assets/svga/record-loading.svga';
 import './index.css';
 
 export const ClassStatusComponent = observer(() => {
@@ -55,45 +53,21 @@ export const NavigationBarContainer = observer(() => {
   return <>{readyToMount ? <NavigationBar></NavigationBar> : null}</>;
 });
 
-const NavigationBarRecordAction = observer(
-  ({ action }: { action: EduNavAction<EduNavRecordActionPayload> }) => {
-    const { payload } = action;
-    return payload ? (
-      <>
-        {payload.recordStatus === RecordStatus.started && (
-          <i className="record-heartbeat animate-pulse"></i>
-        )}
-        {payload.text && <span className="record-tips">{payload.text}</span>}
-        {payload.recordStatus === RecordStatus.starting ? (
-          <SvgaPlayer className="record-icon" url={RecordLoading} width={18} height={18} loops />
-        ) : (
-          <Tooltip key={action.title} title={action.title} placement="bottom">
-            <SvgImg
-              className="record-icon"
-              canHover
-              color={action.iconColor}
-              type={action.iconType}
-              size={24}
-              onClick={action.onClick}
-            />
-          </Tooltip>
-        )}
-      </>
-    ) : null;
-  },
-);
-
 export const NavigationBarAction = observer(({ action }: { action: EduNavAction }) => {
   return (
-    <Tooltip title={action.title} placement="bottom">
-      <SvgImg
-        canHover
-        color={action.iconColor}
-        type={action.iconType}
-        size={24}
-        onClick={action.onClick}
-      />
-    </Tooltip>
+    <>
+      {action.id !== 'Record' && (
+        <Tooltip title={action.title} placement="bottom">
+          <SvgImg
+            canHover
+            color={action.iconColor}
+            type={action.iconType}
+            size={24}
+            onClick={action.onClick}
+          />
+        </Tooltip>
+      )}
+    </>
   );
 });
 
@@ -126,15 +100,9 @@ export const NavigationBar = observer(() => {
         ) : null}
       </div>
       <div className="header-actions">
-        {actions.map((a) =>
-          a.id === 'Record' ? (
-            <NavigationBarRecordAction
-              key={a.iconType}
-              action={a as EduNavAction<EduNavRecordActionPayload>}></NavigationBarRecordAction>
-          ) : (
-            <NavigationBarAction key={a.iconType} action={a as EduNavAction} />
-          ),
-        )}
+        {actions.map((a) => (
+          <NavigationBarAction key={a.iconType} action={a as EduNavAction} />
+        ))}
       </div>
     </Header>
   );
