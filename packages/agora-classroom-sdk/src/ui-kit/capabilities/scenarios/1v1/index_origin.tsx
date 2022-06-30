@@ -26,7 +26,7 @@ const Content: FC<Props> = ({ children }) => {
   return <div className="flex-grow">{children}</div>;
 };
 
-export const OneToOneScenarioOrigin = observer(() => {
+export const OneToOneScenario = observer(() => {
   const layoutCls = classnames('edu-room');
   const {
     classroomStore,
