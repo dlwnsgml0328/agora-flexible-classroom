@@ -25,7 +25,7 @@ export const OneToOneScenario = observer(() => {
         <Layout className="horizontal">
           <Content>
             <div style={{ width: '100%' }}>
-              <h3>안녕하세요 여기에 컨텐츠를 채우면 어떻게 될까요?</h3>
+              {/* <h3>안녕하세요 여기에 컨텐츠를 채우면 어떻게 될까요?</h3> */}
               <iframe style={{ width: '100%', height: '100%' }} src="https://eazel.net/"></iframe>
             </div>
             <Aside
