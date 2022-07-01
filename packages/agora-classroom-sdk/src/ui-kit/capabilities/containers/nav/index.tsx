@@ -1,7 +1,7 @@
-import { EduNavAction, EduNavRecordActionPayload } from '@/infra/stores/common/nav-ui';
+import { EduNavAction } from '@/infra/stores/common/nav-ui';
 import { observer } from 'mobx-react';
 import { useStore } from '~hooks/use-edu-stores';
-import { Header, Inline, Popover, SvgImg, Tooltip, Button, transI18n, SvgaPlayer } from '~ui-kit';
+import { Header, Inline, Popover, SvgImg, Tooltip, transI18n } from '~ui-kit';
 import './index.css';
 
 export const ClassStatusComponent = observer(() => {
@@ -73,8 +73,7 @@ export const NavigationBarAction = observer(({ action }: { action: EduNavAction 
 
 export const NavigationBar = observer(() => {
   const { navigationBarUIStore } = useStore();
-  const { navigationTitle, currScreenShareTitle, actions, isBeforeClass, startClass } =
-    navigationBarUIStore;
+  const { actions } = navigationBarUIStore;
 
   return (
     <Header className="fcr-biz-header">
@@ -82,7 +81,7 @@ export const NavigationBar = observer(() => {
         <SignalQualityComponent />
       </div>
 
-      <div className="fcr-biz-header-title-wrap">
+      {/* <div className="fcr-biz-header-title-wrap">
         <div className="fcr-biz-header-title">
           {currScreenShareTitle && (
             <div className="fcr-biz-header-title-share-name">{currScreenShareTitle}</div>
@@ -98,7 +97,7 @@ export const NavigationBar = observer(() => {
             {transI18n('begin_class')}
           </Button>
         ) : null}
-      </div>
+      </div> */}
       <div className="header-actions">
         {actions.map((a) => (
           <NavigationBarAction key={a.iconType} action={a as EduNavAction} />

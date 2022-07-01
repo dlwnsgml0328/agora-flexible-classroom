@@ -82,6 +82,7 @@
     "release:classroom:sdk": "run-s pack:classroom:sdk",
     "release:electron:mac": "run-s build:apaas pack:electron:mac",
     "release:electron:win": "run-s build:apaas pack:electron:win",
+    "start": "lerna exec --scope=agora-classroom-sdk yarn dev",
     "dev": "lerna exec --scope=agora-classroom-sdk yarn dev",
     "dev:electron": "lerna exec --scope=agora-classroom-sdk yarn electron",
     "dev:ui-kit": "lerna exec --scope=agora-scenario-ui-kit yarn storybook",
