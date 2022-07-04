@@ -22,14 +22,16 @@ export const BigWidgetWindowContainer: FC<Props> = observer((props) => {
     streamWindowUIStore.setMiddleContainerBounds(bounds);
   }, [bounds]);
   return (
-    <div ref={measureRef}>
+    <div
+      className="w-full relative flex-shrink-0 middle-container"
+      style={{ height: bigWidgetWindowHeight, position: 'relative' }}
+      ref={measureRef}>
       {props.children}
       <ScreenShareContainer />
       <WhiteboardTrackArea />
-      {/* 툴바 */}
       <WhiteboardToolbar />
-      <RemoteControlToolbar />
-      <RemoteControlTrackArea />
+      <RemoteControlToolbar></RemoteControlToolbar>
+      <RemoteControlTrackArea></RemoteControlTrackArea>
       <StreamWindowsContainer />
     </div>
   );

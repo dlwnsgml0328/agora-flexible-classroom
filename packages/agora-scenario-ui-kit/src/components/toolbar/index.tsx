@@ -104,53 +104,12 @@ export const Toolbar: FC<ToolbarProps> = ({
 
   return (
     <div
-      className="toolbar-position"
       style={{
         maxHeight,
         right: opened ? 10 : 0,
       }}
       ref={animContainer}>
       <div className={cls} style={style} ref={toolbarEl}>
-        <div
-          className={`menu ${opened ? 'unfold' : 'fold'}`}
-          style={{
-            right: opened ? 30 : 0,
-            // zIndex: opened ? -1 : 0,
-          }}
-          onMouseEnter={() => setMenuHover(true)}
-          onMouseLeave={() => setMenuHover(false)}
-          onClick={() => {
-            toolbarEl.current &&
-              toolbarEl.current.parentElement &&
-              toolbarEl.current.parentElement.classList.remove('toolbar-anim-hide');
-            toolbarEl.current &&
-              toolbarEl.current.parentElement &&
-              toolbarEl.current.parentElement.classList.remove('toolbar-anim-show');
-            if (opened) {
-              toolbarEl.current &&
-                toolbarEl.current.parentElement &&
-                toolbarEl.current.parentElement.classList.add('toolbar-anim-hide');
-            } else {
-              toolbarEl.current &&
-                toolbarEl.current.parentElement &&
-                toolbarEl.current.parentElement.classList.add('toolbar-anim-show');
-            }
-            animTimer.current && clearTimeout(animTimer.current);
-            animTimer.current = setTimeout(() => {
-              if (!isMounted) {
-                return;
-              }
-              setOpened(!opened);
-              onOpenedChange && onOpenedChange(!opened);
-              animTimer.current && clearTimeout(animTimer.current);
-              //0.5s * 0.5
-            }, 250);
-          }}>
-          <img
-            src={menus[`${opened ? 'unfold' : 'fold'}-${menuHover ? 'hover' : 'absent'}`]}
-            alt="menu"
-          />
-        </div>
         <div className="tools" ref={toolbarScrollEl}>
           {tools.map(({ value, ...restProps }) => (
             <Tool

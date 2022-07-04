@@ -24,10 +24,8 @@ const FixedAspectRatioContainer: React.FC<FixedAspectRatioProps> = observer(
     const { shareUIStore } = useStore();
 
     return (
-      <div className="flex bg-black justify-center items-center h-screen w-screen">
-        <div
-          style={style}
-          className={`w-full h-full relative ${shareUIStore.classroomViewportClassName}`}>
+      <div className="bg-black ">
+        <div style={style} className={`${shareUIStore.classroomViewportClassName}`}>
           {children}
         </div>
       </div>

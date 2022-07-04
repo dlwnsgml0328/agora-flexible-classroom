@@ -46,9 +46,8 @@ export const RoomMidStreamsContainer = observer(() => {
   return (
     <div
       id="stage-container"
-      style={{ height: '30%', overflowY: 'hidden' }}
-      className={` ${stageVisible ? '' : 'hidden'}`}>
-      <div className="flex" style={{ flexDirection: 'column' }}>
+      className={`w-full flex-grow flex-shrink-0 ${stageVisible ? '' : 'hidden'}`}>
+      <div className="h-full flex justify-center items-center relative">
         <TeacherStream />
         <div onMouseEnter={mouseHandler(true)} onMouseLeave={mouseHandler(false)}>
           {scrollable && (
@@ -101,7 +100,7 @@ export const TeacherStream = observer((props: { isFullScreen?: boolean }) => {
   return teacherCameraStream ? (
     <div
       ref={ref}
-      style={{ marginRight: gap - 2, position: 'relative', display: 'flex' }}
+      style={{ marginRight: gap - 2, position: 'relative' }}
       className={isFullScreen ? 'video-player-fullscreen' : ''}>
       {visibleStream(teacherCameraStream.stream.streamUuid) ? (
         <VisibilityDOM style={videoStreamStyle} />
