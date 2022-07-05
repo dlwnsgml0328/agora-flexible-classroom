@@ -83,14 +83,17 @@ type TrackPlayerProps = {
   mirrorMode?: boolean;
   canSetupVideo?: boolean;
   isFullScreen?: boolean;
+  role?: EduRoleTypeEnum;
 };
 
 export const LocalTrackPlayer: React.FC<TrackPlayerProps> = observer(
-  ({ style, stream, className, canSetupVideo = true }) => {
+  ({ style, stream, className, canSetupVideo = true, role }) => {
     const {
       streamUIStore: { setupLocalVideo, isMirror },
     } = useStore();
     const ref = useRef<HTMLDivElement | null>(null);
+
+    const newStyle = { ...style, width: '300px' };
 
     useEffect(() => {
       if (ref.current && canSetupVideo) {
@@ -98,17 +101,22 @@ export const LocalTrackPlayer: React.FC<TrackPlayerProps> = observer(
       }
     }, [stream, isMirror, setupLocalVideo, canSetupVideo]);
 
-    return <div style={style} className={className} ref={ref}></div>;
+    if (role !== EduRoleTypeEnum.teacher)
+      return <div style={{ width: 30, height: 30 }} className="remote-not-teacher" ref={ref}></div>;
+
+    return <div style={newStyle} className={className} ref={ref}></div>;
   },
 );
 
 export const RemoteTrackPlayer: React.FC<TrackPlayerProps> = observer(
-  ({ style, stream, className, mirrorMode = true, canSetupVideo = true }) => {
+  ({ style, stream, className, mirrorMode = true, canSetupVideo = true, role }) => {
     const { classroomStore } = useStore();
     const { streamStore } = classroomStore;
     const { setupRemoteVideo } = streamStore;
 
     const ref = useRef<HTMLDivElement | null>(null);
+
+    const newStyle = { ...style, width: '300px' };
 
     useEffect(() => {
       if (ref.current && canSetupVideo) {
@@ -116,7 +124,10 @@ export const RemoteTrackPlayer: React.FC<TrackPlayerProps> = observer(
       }
     }, [stream, setupRemoteVideo, canSetupVideo]);
 
-    return <div style={style} className={className} ref={ref}></div>;
+    if (role !== EduRoleTypeEnum.teacher)
+      return <div style={{ width: 30, height: 30 }} className="remote-not-teacher" ref={ref}></div>;
+
+    return <div style={newStyle} className={className + ' remote-track-player'} ref={ref}></div>;
   },
 );
 
@@ -316,34 +327,36 @@ export const StreamPlayerOverlay = observer(
           ) : null
         }
         placement={isFullscreen ? fullScreenToolbarPlacement : toolbarPlacement}>
-        <div className={cls}>
-          <StreamPlayerCameraPlaceholder canSetupVideo={canSetupVideo} stream={stream} />
-          {children ? children : null}
-          <AwardAnimations stream={stream} />
-          <div className="top-right-info">
-            {rewardVisible && <StreamPlayerOverlayAwardNo stream={stream} />}
-          </div>
-          {canSetupVideo && (
-            <div className="bottom-left-info">
-              <div
-                style={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignItems: 'center',
-                }}>
-                {stream.stream.isLocal ? (
-                  <LocalStreamPlayerVolume stream={stream} />
-                ) : (
-                  <RemoteStreamPlayerVolume stream={stream} />
-                )}
-              </div>
-              <StreamPlayerOverlayName stream={stream} />
+        <div className="eazel-overlay-wrap" style={{ display: 'flex', border: '1px solid orange' }}>
+          <div className={cls}>
+            <StreamPlayerCameraPlaceholder canSetupVideo={canSetupVideo} stream={stream} />
+            {children ? children : null}
+            <AwardAnimations stream={stream} />
+            <div className="top-right-info">
+              {rewardVisible && <StreamPlayerOverlayAwardNo stream={stream} />}
             </div>
-          )}
-          <div className="bottom-right-info">
-            {grantVisible && <StreamPlayerWhiteboardGranted stream={stream} />}
+            {canSetupVideo && (
+              <div className="bottom-left-info">
+                <div
+                  style={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                  }}>
+                  {stream.stream.isLocal ? (
+                    <LocalStreamPlayerVolume stream={stream} />
+                  ) : (
+                    <RemoteStreamPlayerVolume stream={stream} />
+                  )}
+                </div>
+                <StreamPlayerOverlayName stream={stream} />
+              </div>
+            )}
+            <div className="bottom-right-info">
+              {grantVisible && <StreamPlayerWhiteboardGranted stream={stream} />}
+            </div>
+            <StreamPlaceholderWaveArmPlaceholder stream={stream} />
           </div>
-          <StreamPlaceholderWaveArmPlaceholder stream={stream} />
         </div>
       </Popover>
     );
@@ -391,6 +404,7 @@ export const StreamPlayer = observer(
             style={style}
             stream={stream.stream}
             isFullScreen={isFullScreen}
+            role={stream.role}
           />
         ) : (
           <RemoteTrackPlayer
@@ -400,6 +414,7 @@ export const StreamPlayer = observer(
             mirrorMode={stream.isMirrorMode}
             canSetupVideo={canSetupVideo}
             isFullScreen={isFullScreen}
+            role={stream.role}
           />
         )}
       </StreamPlayerOverlay>
@@ -438,7 +453,7 @@ export const CarouselGroup = observer(
     const width = useDebounce(carouselStreams.length ? fullWith : 0, ANIMATION_DELAY);
 
     return (
-      <TransitionGroup className="flex overflow-hidden" style={{ width }}>
+      <TransitionGroup className="flex overflow-hidden" style={{ flexDirection: 'column' }}>
         {carouselStreams.map((stream: EduStreamUI, idx: number) => (
           <CSSTransition
             key={`${stream.stream.streamUuid}`}

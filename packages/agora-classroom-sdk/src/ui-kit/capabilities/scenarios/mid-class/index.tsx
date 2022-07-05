@@ -22,6 +22,7 @@ export const MidClassScenario = observer(() => {
   return (
     <Room>
       <FixedAspectRatioRootBox
+        minimumWidth={window.document.body.clientWidth}
         minimumHeight={window.document.body.clientHeight}
         trackMargin={{ top: 27 }}>
         <SceneSwitch>
