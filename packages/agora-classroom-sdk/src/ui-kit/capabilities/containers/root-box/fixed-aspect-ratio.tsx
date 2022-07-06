@@ -1,7 +1,7 @@
 import { FC, useEffect, useRef } from 'react';
 import { observer } from 'mobx-react';
 import { RootBox } from '~ui-kit';
-import { useClassroomStyle, useInitialize } from './hooks';
+import { useInitialize } from './hooks';
 import { useStore } from '@/infra/hooks/use-edu-stores';
 
 type FixedAspectRatioProps = {
@@ -17,21 +17,19 @@ type FixedAspectRatioProps = {
   children?: React.ReactNode;
 };
 
-const FixedAspectRatioContainer: React.FC<FixedAspectRatioProps> = observer(
-  ({ children, minimumWidth = 0, minimumHeight = 0 }) => {
-    const style = useClassroomStyle({ minimumHeight, minimumWidth });
+const FixedAspectRatioContainer: React.FC<FixedAspectRatioProps> = observer(({ children }) => {
+  const { shareUIStore } = useStore();
 
-    const { shareUIStore } = useStore();
-
-    return (
-      <div className="bg-black ">
-        <div style={style} className={`${shareUIStore.classroomViewportClassName}`}>
-          {children}
-        </div>
+  return (
+    <div className="bg-black" style={{ height: '100%' }}>
+      <div
+        style={{ width: '100%', height: '100%' }}
+        className={`${shareUIStore.classroomViewportClassName}`}>
+        {children}
       </div>
-    );
-  },
-);
+    </div>
+  );
+});
 
 export const TrackArea = ({ top = 0, boundaryName }: { top?: number; boundaryName: string }) => {
   const { trackUIStore, shareUIStore } = useStore();
@@ -58,18 +56,13 @@ export const TrackArea = ({ top = 0, boundaryName }: { top?: number; boundaryNam
 
 export const FixedAspectRatioRootBox: FC<FixedAspectRatioProps> = ({
   children,
-  minimumWidth,
-  minimumHeight,
   trackMargin,
   ...props
 }) => {
   useInitialize({ top: trackMargin?.top || 0 });
 
   return (
-    <FixedAspectRatioContainer
-      minimumWidth={minimumWidth || 1024}
-      minimumHeight={minimumHeight || 576}
-      {...props}>
+    <FixedAspectRatioContainer {...props}>
       <ClassroomTrackBounds trackMargin={trackMargin} />
       <RootBox>{children}</RootBox>
     </FixedAspectRatioContainer>

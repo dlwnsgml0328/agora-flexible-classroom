@@ -1,4 +1,4 @@
-import { Aside, Content, Layout } from '~components/layout';
+import { Aside, Layout } from '~components/layout';
 import { observer } from 'mobx-react';
 import classnames from 'classnames';
 import { NavigationBarContainer } from '~containers/nav';
@@ -16,36 +16,22 @@ import { Award } from '../../containers/award';
 import { BigWidgetWindowContainer } from '../../containers/big-widget-window';
 
 export const MidClassScenario = observer(() => {
-  // layout
   const layoutCls = classnames('edu-room', 'mid-class-room');
 
   return (
     <Room>
-      <FixedAspectRatioRootBox
-        minimumWidth={window.document.body.clientWidth}
-        minimumHeight={window.document.body.clientHeight}
-        trackMargin={{ top: 27 }}>
+      <FixedAspectRatioRootBox trackMargin={{ top: 27 }}>
         <SceneSwitch>
           <Layout className={layoutCls} direction="col">
-            <Layout className="horizontal">
-              <Content className="content-for-immsi">
-                <div style={{ width: '100%' }}>
-                  <iframe
-                    style={{ width: '100%', height: '100%' }}
-                    src="https://eazel.net/"></iframe>
-                </div>
-              </Content>
-              <Aside>
-                <NavigationBarContainer />
-                <>
-                  <RoomMidStreamsContainer />
-                  <BigWidgetWindowContainer />
-                </>
-                <HandsUpContainer />
-                <ChatWidgetPC />
-              </Aside>
-            </Layout>
-
+            <Aside>
+              <NavigationBarContainer />
+              <>
+                <RoomMidStreamsContainer />
+                <BigWidgetWindowContainer />
+              </>
+              <HandsUpContainer />
+              <ChatWidgetPC />
+            </Aside>
             <DialogContainer />
             <LoadingContainer />
           </Layout>
