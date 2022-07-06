@@ -62,85 +62,79 @@ export const Roster: FC<RosterProps> = ({
 
   return (
     <OverlayWrap opened={opened} onExited={onClose}>
-      <Rnd
-        dragHandleClassName="main-title"
-        bounds={'.' + bounds}
-        enableResizing={false}
-        default={defaultPos}>
-        <div
-          className="roster-wrap"
-          style={{ minWidth: width || modalSize.width, height: modalSize.height }}>
-          {/* close icon */}
-          <div className="btn-pin">
-            <SvgImg
-              type="close"
-              className="cursor-pointer"
-              onClick={() => {
-                setOpened(false);
-              }}
-            />
-          </div>
-          {/* title bar */}
-          <div className="main-title">{title ?? transI18n('roster.user_list')}</div>
-          {/* panel */}
-          <div className="roster-container">
-            {/* carousel & search */}
-            <div className="search-header roster-header">
-              <div
-                style={{
-                  display: 'flex',
-                  justifyContent: 'space-between',
-                  alignItems: 'center',
-                }}>
-                <div className="search-teacher-name">
-                  <label>{transI18n('roster.teacher_name')}</label>
-                  <span title={hostname} className="roster-username">
-                    {hostname}
-                  </span>
-                </div>
-                {showCarousel && <CarouselSetting {...carouselProps} />}
-              </div>
-              {showSearch ? (
-                <div style={{ marginTop: showCarousel ? 5 : 0 }}>
-                  <Search
-                    value={keyword}
-                    onSearch={onKeywordChange}
-                    prefix={<SvgImg type="search" />}
-                    inputPrefixWidth={32}
-                    placeholder={transI18n('scaffold.search')}
-                  />
-                </div>
-              ) : null}
-            </div>
-            {/* table */}
-            <Table className="roster-table">
-              <TableHeader>
-                {cols.map(({ key, name, width }, idx) => {
-                  const isFirstColumn = idx === 0;
-                  return (
-                    <Col
-                      key={key}
-                      className={isFirstColumn ? 'justify-start' : 'justify-center'}
-                      style={
-                        width
-                          ? {
-                              paddingLeft: isFirstColumn ? 25 : 0,
-                              flex: isFirstColumn ? '0 1 auto' : 1,
-                            }
-                          : {
-                              paddingLeft: isFirstColumn ? 25 : 0,
-                            }
-                      }>
-                      {transI18n(name)}
-                    </Col>
-                  );
-                })}
-              </TableHeader>
-              {children}
-            </Table>
-          </div>
+      <div
+        className="roster-wrap"
+        style={{ minWidth: width || modalSize.width, height: modalSize.height }}>
+        {/* close icon */}
+        <div className="btn-pin">
+          <SvgImg
+            type="close"
+            className="cursor-pointer"
+            onClick={() => {
+              setOpened(false);
+            }}
+          />
         </div>
-      </Rnd>
+        {/* title bar */}
+        <div className="main-title">{title ?? transI18n('roster.user_list')}</div>
+        {/* panel */}
+        <div className="roster-container">
+          {/* carousel & search */}
+          <div className="search-header roster-header">
+            <div
+              style={{
+                display: 'flex',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+              }}>
+              <div className="search-teacher-name">
+                <label>{transI18n('roster.teacher_name')}</label>
+                <span title={hostname} className="roster-username">
+                  {hostname}
+                </span>
+              </div>
+              {showCarousel && <CarouselSetting {...carouselProps} />}
+            </div>
+            {showSearch ? (
+              <div style={{ marginTop: showCarousel ? 5 : 0 }}>
+                <Search
+                  value={keyword}
+                  onSearch={onKeywordChange}
+                  prefix={<SvgImg type="search" />}
+                  inputPrefixWidth={32}
+                  placeholder={transI18n('scaffold.search')}
+                />
+              </div>
+            ) : null}
+          </div>
+          {/* table */}
+          <Table className="roster-table">
+            <TableHeader>
+              {cols.map(({ key, name, width }, idx) => {
+                const isFirstColumn = idx === 0;
+                return (
+                  <Col
+                    key={key}
+                    className={isFirstColumn ? 'justify-start' : 'justify-center'}
+                    style={
+                      width
+                        ? {
+                            paddingLeft: isFirstColumn ? 25 : 0,
+                            flex: isFirstColumn ? '0 1 auto' : 1,
+                          }
+                        : {
+                            paddingLeft: isFirstColumn ? 25 : 0,
+                          }
+                    }>
+                    {transI18n(name)}
+                  </Col>
+                );
+              })}
+            </TableHeader>
+            {children}
+          </Table>
+        </div>
+      </div>
     </OverlayWrap>
   );
 };

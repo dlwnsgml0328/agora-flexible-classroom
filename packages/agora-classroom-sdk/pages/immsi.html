@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Hello Agora</h1>
+
+    <button type="button" onclick="launch()">launch</button>
+    <div style="display: flex; width: 100%; height: 100%">
+      <iframe src="https://eazel.net" title="iframe" width="50%"></iframe>
+      <div id="launch-dom" style="width: 50%"></div>
+    </div>
+
+    <script src="../lib/edu_sdk.bundle.js"></script>
+    <script>
+      const launch = async () => {
+        console.log('launch start!');
+
+        await window.AgoraEduSDK.config({
+          appId: '8a23d043d1f2493b9e50b358002542c7',
+          region: 'NA',
+        });
+
+        await window.AgoraEduSDK.launch(document.querySelector(`#launch-dom`), {
+          rtmToken:
+            '0068a23d043d1f2493b9e50b358002542c7IADPdl9slPOJdnphHJCeTFu7OSbv5xksVkAekrIgA0bn49Wm9rAAAAAAEAAgmTIHPlXGYgEA6AM+VcZi',
+          userUuid: 'teacher',
+          userName: 'teacher',
+          roomUuid: '01923',
+          roleType: 1,
+          roomType: 4,
+          roomName: 'demo-class',
+          pretest: false,
+          language: 'en',
+          startTime: new Date().getTime(),
+          duration: 60 * 30,
+          courseWareList: [],
+          listener: (evt) => {
+            console.log('evt', evt);
+          },
+        });
+      };
+    </script>
+  </body>
+</html>
