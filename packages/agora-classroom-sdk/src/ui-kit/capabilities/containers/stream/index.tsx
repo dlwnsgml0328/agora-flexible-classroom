@@ -327,7 +327,7 @@ export const StreamPlayerOverlay = observer(
           ) : null
         }
         placement={isFullscreen ? fullScreenToolbarPlacement : toolbarPlacement}>
-        <div className="eazel-overlay-wrap" style={{ display: 'flex', border: '1px solid orange' }}>
+        <div className="eazel-overlay-wrap" style={{ display: 'flex' }}>
           <div className={cls}>
             <StreamPlayerCameraPlaceholder canSetupVideo={canSetupVideo} stream={stream} />
             {children ? children : null}

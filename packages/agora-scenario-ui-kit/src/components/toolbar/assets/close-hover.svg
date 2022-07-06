@@ -15,7 +15,8 @@
                 <use fill="black" fill-opacity="1" filter="url(#filter-2)" xlink:href="#path-1"></use>
                 <use fill="#FFFFFF" fillRule="evenodd" xlink:href="#path-1"></use>
             </g>
-            <polygon id="三角形" fill="#0073FF" transform="translate(8.000000, 25.000000) rotate(-90.000000) translate(-8.000000, -25.000000) " points="8 22.5 13 27.5 3 27.5"></polygon>
+            <!-- <polygon id="三角形" fill="#0073FF" transform="translate(8.000000, 25.000000) rotate(-90.000000) translate(-8.000000, -25.000000) " points="8 22.5 13 27.5 3 27.5"></polygon> -->
+            <polygon id="三角形" fill="#88beff" transform="translate(8.000000, 25.000000) rotate(-90.000000) translate(-8.000000, -25.000000) " points="8 22.5 13 27.5 3 27.5"></polygon>
         </g>
     </g>
 </svg>

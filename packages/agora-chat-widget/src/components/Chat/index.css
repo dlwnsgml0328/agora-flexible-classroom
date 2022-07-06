@@ -30,7 +30,8 @@
   background: #e2e2ee;
 }
 .chat-switch.ant-switch-checked {
-  background-color: #1890ff;
+  /* background-color: #1890ff; */
+  background-color: #88beff;
 }
 .ant-tabs-ink-bar-animated {
   /* 宽度自定义 */

@@ -57,5 +57,6 @@
 
 .scenes-controller-btn .icon-undo:hover path,
 .scenes-controller-btn .icon-redo:hover path {
-  fill: #0073ff;
+  /* fill: #0073ff; */
+  fill: #88beff;
 }

@@ -394,7 +394,8 @@ const RecordingDeviceManager = () => {
         <MicrophoneSelect />
       </div>
       <div className="device-volume-test">
-        <SvgImg type="microphone-on-outline" style={{ color: '#0073FF' }} />
+        {/* <SvgImg type="microphone-on-outline" style={{ color: '#0073FF' }} /> */}
+        <SvgImg type="microphone-on-outline" style={{ color: '#88beff' }} />
         <LocalAudioVolumeIndicator />
       </div>
     </div>

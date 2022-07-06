@@ -1,8 +1,10 @@
 .slider .rc-slider-track {
-  background-color: #0073ff;
+  /* background-color: #0073ff; */
+  background-color: #88beff;
 }
 .slider .rc-slider-handle {
-  border-color: #0073ff;
+  /* border-color: #0073ff; */
+  border-color: #88beff;
 }
 
 .agora-slider-tooltip .rc-slider-tooltip-inner {

@@ -357,7 +357,8 @@
 }
 .tabs-card > .tabs-nav .tabs-tab-active,
 .tabs-card > div > .tabs-nav .tabs-tab-active {
-  color: #1890ff;
+  /* color: #1890ff; */
+  color: #88beff;
   background: #fff;
 }
 
@@ -538,7 +539,8 @@
 }
 .tabs-ink-bar {
   position: absolute;
-  background: #0073ff;
+  /* background: #0073ff; */
+  background: #88beff;
   pointer-events: none;
 }
 .tabs-tab {

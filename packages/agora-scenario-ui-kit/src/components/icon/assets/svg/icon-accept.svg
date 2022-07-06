@@ -9,7 +9,8 @@
                         <g id="信息" transform="translate(16.000000, 6.000000)">
                             <g id="icon-accept" transform="translate(122.000000, 0.000000)">
                                 <rect id="icon-backward" fill="#565656" fillRule="nonzero" opacity="0" x="0" y="0" width="28" height="28" rx="4"></rect>
-                                <circle id="椭圆形" fill="#0073FF" cx="14" cy="14" r="13"></circle>
+                                <!-- <circle id="椭圆形" fill="#0073FF" cx="14" cy="14" r="13"></circle> -->
+                                <circle id="椭圆形" fill="#88beff" cx="14" cy="14" r="13"></circle>
                                 <g id="Group-21-Copy" transform="translate(9.000000, 11.000000)" stroke="#FFFFFF" strokeWidth="1.5">
                                     <polyline id="Stroke-2" transform="translate(5.000000, 3.000000) rotate(-90.000000) translate(-5.000000, -3.000000) " points="8 8 2 2.00001483 5 -2"></polyline>
                                 </g>

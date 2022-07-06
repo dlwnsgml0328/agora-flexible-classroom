@@ -219,10 +219,12 @@
   background-color: #52c41a;
 }
 .tooltip-blue .tooltip-inner {
-  background-color: #1890ff;
+  /* background-color: #1890ff; */
+  background-color: #88beff;
 }
 .tooltip-blue .tooltip-arrow-content {
-  background-color: #1890ff;
+  /* background-color: #1890ff; */
+  background-color: #88beff;
 }
 .tooltip-geekblue .tooltip-inner {
   background-color: #2f54eb;

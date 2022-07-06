@@ -178,7 +178,8 @@ input.vote-item::placeholder {
   left: 0;
   top: 0;
   height: 100%;
-  background: #0073ff;
+  /*  background: #0073ff; */
+  background: #88beff;
 }
 .vote-btn-launch {
   margin: 0 20px;

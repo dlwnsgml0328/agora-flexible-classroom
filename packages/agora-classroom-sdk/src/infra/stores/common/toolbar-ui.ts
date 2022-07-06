@@ -108,7 +108,8 @@ export class ToolbarUIStore extends EduUIStoreBase {
     '#7ed321',
     '#9013fe',
     '#50e3c2',
-    '#0073ff',
+    // '#0073ff',
+    '#88beff',
     '#ffc8e2',
   ];
   readonly defaultPens: string[] = [
