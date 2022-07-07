@@ -5,6 +5,7 @@ const { InjectManifest } = require('workbox-webpack-plugin');
 const path = require('path');
 const webpack = require('webpack');
 const dotenv = require('dotenv-webpack');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 const baseConfig = require('./webpack.base');
 const { ROOT_PATH } = require('./utils/index');
@@ -74,6 +75,7 @@ const config = {
     ],
   },
   plugins: [
+    new BundleAnalyzerPlugin(),
     new dotenv({
       path: './.env',
     }),
